@@ -20,7 +20,7 @@
 
 
 
-![image-20210129134141459](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20210129134141459.png)
+![image-20210129134141459](images\image-20210129134141459.png)
 
 
 
