@@ -23,6 +23,15 @@ upstream boluo{
 	server localhost:8082;
 	server localhost:8083;
 }
+
+server{
+	listen 80;
+	server_name www.boluo.com;
+	location /{
+		#转发到上面配置的服务器组
+		proxy_pass http://boluo;
+	}
+}
 ~~~
 
 配置代理
