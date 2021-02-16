@@ -6,3 +6,6 @@
 
 4.GET请求产生一个tcp数据包，POST请求产生两个数据包
 
+对于GET方式的请求，浏览器会把 http header 和 data 一并发送出去，服务器响应200
+
+对于POST方式的请求，浏览器先发送header，服务器响应100 continue，浏览器再发送data，服务器响应200

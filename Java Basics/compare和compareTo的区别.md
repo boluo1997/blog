@@ -15,7 +15,7 @@
  * 排序方法1: 通过比较器Comparator
  * 通过集合对象调用sort()方法返回比较器
  * 需要对compare方法进行重写
- *
+ * 
  */
 
 public class Test30_compare {
