@@ -1,16 +1,16 @@
 1.安装nginx
 
-![image-20210210140802108](C:\Users\dingc\AppData\Roaming\Typora\typora-user-images\image-20210210140802108.png)
+![image-20210210140802108](../$image/image-20210210140802108.png)
 
 
 
 2.通过修改端口号的方式，启动多个程序。启动程序时加上server.port参数来指定不同的端口
 
-![image-20210210140844063](C:\Users\dingc\AppData\Roaming\Typora\typora-user-images\image-20210210140844063.png)
+![image-20210210140844063](../$image/image-20210210140844063.png)
 
 
 
-![image-20210210141347910](C:\Users\dingc\AppData\Roaming\Typora\typora-user-images\image-20210210141347910.png)
+![image-20210210141347910](../$image/image-20210210141347910.png)
 
 
 
@@ -36,7 +36,7 @@ server{
 
 配置代理
 
-![image-20210210142332537](C:\Users\dingc\AppData\Roaming\Typora\typora-user-images\image-20210210142332537.png)
+![image-20210210142332537](../$image/image-20210210142332537.png)
 
 
 
