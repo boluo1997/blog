@@ -1,0 +1,36 @@
+select aa.stiid, aa.stiname, b.oi_date
+from b 
+right join 
+(
+select a.oip_oi_id,
+			 max(if(a.oip_key = 'sti_id',oip_value,null)) as stiid,
+		   max(if(a.oip_key = 'sti_name',oip_value,null)) as stiname
+from a 
+where a.oip_key = 'sti_id' or a.oip_key = 'sti_name'
+group by a.oip_oi_id
+) aa
+on aa.oip_oi_id = b.oi_id
+
+
+
+select * 
+from (
+		select c.stiid, c.stiname, c.oi_date, row_number() over(partition by c.stiid, c.stiname order by c.oi_date) rn
+from c 
+)
+where rn = 1
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
