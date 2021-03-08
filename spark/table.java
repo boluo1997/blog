@@ -1,13 +1,23 @@
-package src;
+y_device_info表
 
-/* SimpleApp.java */
-import org.apache.spark.api.java.function.FilterFunction;
-import org.apache.spark.sql.Row;
-import org.apache.spark.sql.SaveMode;
-import org.apache.spark.sql.SparkSession;
-import org.apache.spark.sql.Dataset;
++------+----------+--------+--------------------+----------+-----------------+--------+----------+----------+-------+-----------+---------------+---------------+------------------+----------+-------------------+
+|dii_id|dii_sti_id|dii_name|            dii_code|dii_number|dii_validate_code|dii_type|dii_dim_id|dii_status|dii_run|dii_bespeak|dii_app_version|dii_intranet_ip|dii_upload_message|dii_delete|           dii_date|
++------+----------+--------+--------------------+----------+-----------------+--------+----------+----------+-------+-----------+---------------+---------------+------------------+----------+-------------------+
+|     1|         1|  洗衣机|c4ca4238a0b923820...|       101|             null|       1|         1|        10|      1|          0|          1.3.3|  192.168.8.100|                 0|         0|2017-06-16 14:25:49|
+|     2|         1|  洗衣机|c81e728d9d4c2f636...|       102|             null|       1|         1|        10|      1|          0|          1.3.3|  192.168.8.103|                 0|         0|2017-06-16 14:26:05|
+|     3|         1|  洗衣机|eccbc87e4b5ce2fe2...|       103|             null|       1|         1|        10|      1|          0|          1.3.3|  192.168.8.106|                 0|         0|2017-06-16 14:26:25|
+|     4|         1|  洗衣机|a87ff679a2f3e71d9...|       104|             null|       1|         1|        10|      1|          0|          1.3.3|  192.168.8.104|                 0|         0|2017-06-16 14:26:37|
+|     5|         1|  烘干机|e4da3b7fbbce2345d...|       201|             null|       2|         3|        10|      1|          0|          1.3.4|  192.168.8.201|                 0|         0|2017-06-16 14:27:07|
+|     6|         1|  烘干机|1679091c5a880faf6...|       202|             null|       2|         3|        10|      1|          0|          2.1.0|  192.168.8.202|                 0|         0|2017-06-16 14:27:30|
+|     7|         1|  烘干机|8f14e45fceea167a5...|       203|             null|       2|         3|        10|      1|          0|          2.1.0|  192.168.8.203|                 0|         0|2017-06-16 14:27:43|
+|     8|         1|  烘干机|c9f0f895fb98ab915...|       204|             null|       2|         3|        10|      1|          0|          1.3.3|  192.168.8.101|                 0|         0|2017-06-16 14:27:58|
+|    11|         4|  洗衣机|6512bd43d9caa6e02...|       101|             null|       1|         1|        10|      1|          0|          1.3.3|  192.168.8.101|                 0|         0|2017-06-30 16:54:34|
+|    12|         4|  洗衣机|c20ad4d76fe97759a...|       102|             null|       1|         1|        10|      1|          0|          1.3.3|  192.168.8.102|                 0|         0|2017-06-30 16:54:47|
 
-/**
+
+
+
+
 y_order_info表中有如下信息, 其中oi_id是与y_order_info_param表的关联字段,只取其中的oi_date字段即可
 
 +-------+--------+--------------------+----------------+---------------+---------------+---------+-------------+-----------------+--------------------+--------------------+-------------+-----------+------------+----------------+-------+---------+-------------------+
@@ -15,6 +25,12 @@ y_order_info表中有如下信息, 其中oi_id是与y_order_info_param表的关�
 +-------+--------+--------------------+----------------+---------------+---------------+---------+-------------+-----------------+--------------------+--------------------+-------------+-----------+------------+----------------+-------+---------+-------------------+
 |5429830|    9367|ON155075422694332...|            null|           null|       加强洗涤|        3|         7.00|             7.00|27d7f316bd9b4a659...|20190221220014233...|       normal|     支付宝|        null|            null|   1300|        0|2019-02-21 21:03:46|
 |5429831|       1|ON155075423285460...|            null|           null|       标准洗涤|        1|         5.00|             5.00|                null|                null|         null|       null|        null|            null|   1450|        0|2019-02-21 21:03:52|
+
+
+
+
+
+
 
 y_order_info_param表中有如下信息, 我们需要取到其中oip_key中的sti_id(店铺id)和sti_name(店铺名)字段,例如下表中数据sti_id = 157, sti_name = 兰德力141店
 
@@ -42,91 +58,3 @@ y_order_info_param表中有如下信息, 我们需要取到其中oip_key中的st
 |187262944|  8467407|     dii_number|                102|         0|2019-07-28 22:47:54|
 |187262945|  8467407|       dii_type|                  1|         0|2019-07-28 22:47:54|
 +---------+---------+---------------+-------------------+----------+-------------------+
-
-*
-*/  
-
-public class boluoTest1 {
-
-    public static void main(String[] args) {
-        //String dataFile = "D:\\data\\dbv2\\y_device_info"; // Should be some file on your system
-        String orderInfo = "D:\\data\\dbv2\\y_order_info";
-        String orderParam = "D:\\data\\dbv2\\y_order_info_param";
-
-        SparkSession spark = SparkSession
-                .builder()
-                .master("local[*]")
-                .appName("Simple Application")
-                .getOrCreate();
-
-        //Dataset<String> logData = spark.read().textFile(logFile).cache();
-        //long numAs = logData.filter((FilterFunction<String>) s -> s.contains("a")).count();
-        //long numBs = logData.filter((FilterFunction<String>) s -> s.contains("b")).count();
-        //System.out.println("Lines with a: " + numAs + ", lines with b: " + numBs);
-
-        /*df.select("dii_name","dii_code")
-                .write()
-                .mode(SaveMode.Overwrite)
-                .csv("D:\\data\\demo\\boluo");*/
-
-        Dataset<Row> df1 = spark.read().format("delta").load(orderInfo);
-        //df1.printSchema();
-        df1.show();
-
-        Dataset<Row> df2 = spark.read().format("delta").load(orderParam);
-        //df2.printSchema();
-        df2.show();
-
-        df1.registerTempTable("b");
-        df2.registerTempTable("a");
-
-        //df1.createOrReplaceGlobalTempView("b");
-
-        /*spark.udf().register("prefixName",new UDF1<String, String>(){
-
-            @Override
-            public String call(String s) throws Exception {
-                return "boluo " + s;
-            }
-        }, DataTypes.StringType);*/
-
-        spark.udf().register("prefixName", (String name) -> "boluo "+name, DataTypes.StringType);
-
-        spark.sql("select prefixName(b.oi_introduction) from b").show();
-
-        /*spark.sql("select a.oip_oi_id,\n" +
-                "\t\t\t max(if(a.oip_key = 'sti_id',oip_value,null)) as stiid,\n" +
-                "\t\t   max(if(a.oip_key = 'sti_name',oip_value,null)) as stiname\n" +
-                "from a \n" +
-                "where a.oip_key = 'sti_id' or a.oip_key = 'sti_name'\n" +
-                "group by a.oip_oi_id").show();*/
-
-
-        Dataset ds = spark.sql("select aa.stiid, aa.stiname, b.oi_date\n" +
-                "from b \n" +
-                "right join \n" +
-                "(\n" +
-                "select a.oip_oi_id,\n" +
-                "\t\t\t max(if(a.oip_key = 'sti_id',oip_value,null)) as stiid,\n" +
-                "\t\t   max(if(a.oip_key = 'sti_name',oip_value,null)) as stiname\n" +
-                "from a \n" +
-                "where a.oip_key = 'sti_id' or a.oip_key = 'sti_name'\n" +
-                "group by a.oip_oi_id\n" +
-                ") aa\n" +
-                "on aa.oip_oi_id = b.oi_id");
-
-        ds.registerTempTable("c");
-        spark.sql("select * \n" +
-                "from (\n" +
-                "\t\tselect c.stiid, c.stiname, c.oi_date, row_number() over(partition by c.stiid, c.stiname order by c.oi_date) rn\n" +
-                "from c \n" +
-                ")\n" +
-                "where rn = 1").show();
-
-
-        //ds.write().mode(SaveMode.Overwrite).csv("D:\\data\\demo\\boluo2");
-
-        spark.stop();
-    }
-}
-
