@@ -18,3 +18,6 @@ val maxRDD: RDD[Array[Int]] = glomRDD.map(
 maxRDD.collect().sum
 ~~~
 
+
+
+git push test
