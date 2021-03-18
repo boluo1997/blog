@@ -2,9 +2,7 @@
 
 调用微信申请资金账单API
 
-https://gitee.com/yuanyingshuo/pic-md1/raw/master/Snipaste_2021-03-18_22-24-52.png
-
-
+![(https://gitee.com/yuanyingshuo/pic-md1/raw/master/Snipaste_2021-03-18_22-24-52.png)
 
 ~~~java
 <dependency>
