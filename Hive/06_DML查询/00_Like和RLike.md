@@ -22,5 +22,7 @@ select t.deptno, t.job, max(t.sal) max_sal
 from emp t
 group by t.depton, t.job
 
+# ceshi
+
 ~~~
 
